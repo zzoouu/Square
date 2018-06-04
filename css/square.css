@@ -1,0 +1,38 @@
+.square{
+	width: 260px;
+	margin: 0 auto;
+	
+}
+.square-grid{
+	width: 260px;
+	height: 270px;
+}
+
+.square-grid .grid-item{
+	
+	width: 80px;
+	height: 80px;
+	margin: 0 auto;
+	border-radius: 8px;
+	background-color: #FFA600;
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+.square-grid .r0{
+	margin-right: 0px;
+}
+.start-light,.end-light{
+	width: 260px;
+	height: 35px;
+	border: 1px solid #FFA600;
+	border-radius: 4px;
+	text-align: center;
+	line-height: 35px;
+	color: #FFA600;
+	margin-bottom: 10px;
+	/*background-color: #ff0000;*/
+}
+.start-light,.end-light:hover{
+	cursor: pointer;
+}
