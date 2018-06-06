@@ -17,7 +17,8 @@ window.onload = function() {
     }
     //“开始闪”被点击时触发的事件
     start.onclick = function() {
-            reset();
+            //reset();
+            clearTime = clearInterval(changeTime);
             start.style.backgroundColor = "#FFA600";
             start.style.color = "#ffffff";
             //end.style.backgroundColor = "#ffffff";
@@ -39,29 +40,17 @@ window.onload = function() {
                     colorArr[n] = colorVal;
                 }
                 //随机选中三个格子,此方法可能导致一次选中的三个格子有相同的
-                //			for(var m = 0; m < 3; m++) {
-                //				var grid = Math.floor(Math.random() * 9);
-                //				for(var j = 0; j < 3; j++) {
-                //					tex = gridArray[Math.floor(Math.random() * 9)];
-                //					
-                //					gridSelected[j] = gridArray[Math.floor(Math.random() * 9)];
-                //				}
-                //				gridSelected[m].style.backgroundColor = colorArr[m];
-                //				alert(gridSelected[m].innerHTML);
-                //	
-                //			}
-                //随机获取三个不同得到格子，解决了通过随机函数可能取得相同各自的问题
-                for (var c = 0; c < 3; c++) {
-                    var selected
-                    selected = randomGrid();
-                    while (selected.innerHTML == null) {
-                        selected = randomGrid();
-                    }
-                    gridSelected[c] = selected;
-                    //alert(selected.innerHTML);
-                    gridSelected[c].style.backgroundColor = colorArr[c];
-                }
-
+                //						for(var m = 0; m < 3; m++) {
+                //							var grid = Math.floor(Math.random() * 9);
+                //							for(var j = 0; j < 3; j++) {
+                //								tex = gridArray[Math.floor(Math.random() * 9)];
+                //								
+                //								gridSelected[j] = gridArray[Math.floor(Math.random() * 9)];
+                //							}
+                //							gridSelected[m].style.backgroundColor = colorArr[m];
+                //							alert(gridSelected[m].innerHTML);
+                //				
+                //						}
                 function randomGrid() {
                     var grid = Math.floor(Math.random() * 9);
                     for (var b = 0; b < 3; b++) {
@@ -71,6 +60,28 @@ window.onload = function() {
                     }
                     return gridArray[grid];
 
+                }
+                //随机获取三个不同得到格子，解决了通过随机函数可能取得相同各自的问题
+                for (var c = 0; c < 3; c++) {
+                    var selected
+                    selected = randomGrid();
+                    while (selected.innerHTML == null) {
+                        selected = randomGrid();
+                    }
+                    gridSelected[c] = selected;
+                }
+                //打乱数组
+                for (var n = 0; n < 3; n++) {
+                    var temp;
+                    var index = Math.floor(Math.random() * 3);
+                    if (index != n) {
+                        temp = gridSelected[n];
+                        gridSelected[n] = gridSelected[index];
+                        gridSelected[index] = temp;
+                    }
+                }
+                for (var n = 0; n < 3; n++) {
+                    gridSelected[n].style.backgroundColor = colorArr[n]
                 }
             }, 1000);
 
